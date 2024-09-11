@@ -1,0 +1,129 @@
+button {
+    box-sizing: border-box;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: 0.6em;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    margin: 20px;
+    padding: 1.2em 2.8em;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Noto Sans Ko' ,sans-serif;
+    font-weight: 700;
+}
+
+button:hover, button:focus {
+    color: black;
+    outline: 0;
+}
+
+/* basicBtn, noiseBtm, lightBtn, slashBtn, openBtn */
+
+.basicBtn {
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.basicBtn:hover {
+    box-shadow: 0 0 40px 40px black inset;
+}
+
+.noiseBtn {
+    border-radius: 3em;
+    border-color: black;
+    color: #fff;
+    background: linear-gradient(
+        to right,
+        rgba(26, 188, 156, 0.4), rgba(26, 188, 156, 0.4) 5%, 
+        black 5%, black 10%, 
+        rgba(26, 188, 156, 0.4) 10%, rgba(26, 188, 156, 0.4) 15%, 
+        black 15%, black 20%, 
+        rgba(26, 188, 156, 0.4) 20%, rgba(26, 188, 156, 0.4) 25%, 
+        black 25%, black 30%, 
+        rgba(26, 188, 156, 0.4) 30%, rgba(26, 188, 156, 0.4) 35%, 
+        black 35%, black 40%, 
+        rgba(26, 188, 156, 0.4) 40%, rgba(26, 188, 156, 0.4) 45%, 
+        black 45%, black 50%, 
+        rgba(26, 188, 156, 0.4) 50%, rgba(26, 188, 156, 0.4) 55%, 
+        black 55%, black 60%, 
+        rgba(26, 188, 156, 0.4) 60%, rgba(26, 188, 156, 0.4) 65%, 
+        black 65%, black 70%, 
+        rgba(26, 188, 156, 0.4) 70%, rgba(26, 188, 156, 0.4) 75%, 
+        black 75%, black 80%, 
+        rgba(26, 188, 156, 0.4) 80%, rgba(26, 188, 156, 0.4) 85%, 
+        black 85%, black 90%, 
+        rgba(26, 188, 156, 0.4) 90%, rgba(26, 188, 156, 0.4) 95%, 
+        black 95%, black 100%
+    );
+    background-position: 0 0;
+    background-size: 100%;
+    transition: background 300ms ease-in-out;
+}
+
+.noiseBtn:hover {
+    background-position: 100px;
+}
+
+.lightBtn {
+    border-color: black;
+    color: #fff;
+    box-shadow: 0 0 40px 40px black inset, 0 0 0 0 black;
+    transition: all 150ms ease-in-out;
+}
+
+.lightBtn:hover {
+    color: black;
+    box-shadow: 0 0 10px 0 black inset, 0 0 10px 4px black;
+}
+
+.slashBtn {
+    border-color: black;
+    color: black;
+    background: linear-gradient(45deg, black 50%, transparent 50%);
+    background-position: 100%;
+    background-size: 400%;
+    transition: background 300ms ease-in-out;
+}
+
+.slashBtn:hover {
+    background-position: 0;
+}
+
+.openBtn {
+    border-color: black;
+    border-radius: 0;
+    color: black;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 150ms ease-in-out;
+}
+
+.openBtn:after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 100%;
+    background: black;
+    z-index: -1;
+    transition: width 150ms ease-in-out;
+}
+
+.openBtn:hover {
+    color: #fff;
+}
+
+.openBtn:hover:after {
+    width: 110%;
+}

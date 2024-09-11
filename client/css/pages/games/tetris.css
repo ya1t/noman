@@ -1,0 +1,57 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: #fff;
+}
+
+h1 {
+    text-align: center;
+}
+
+.tetris-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.tetris-game, .next-blocks {
+    margin: 10px;
+}
+
+canvas {
+    background-color: #000;
+    display: block;
+}
+
+.controls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.high-scores {
+    margin-top: 20px;
+}
+
+.high-scores ol {
+    list-style-type: none;
+    padding: 0;
+}
+
+.high-scores ol li {
+    margin: 5px 0;
+    background-color: #444;
+    padding: 10px;
+    border-radius: 5px;
+}

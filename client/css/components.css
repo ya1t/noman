@@ -1,0 +1,21 @@
+a {
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+input, button, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+}

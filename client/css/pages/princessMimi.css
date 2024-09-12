@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Diphylleia&family=Playwrite+CU:wght@100..400&family=Single+Day&display=swap');
+
+body {
+    background-color: rgb(255, 126, 147);
+    color: white;
+    font-family: 'Playwrite CU', 'Diphylleia';
+}
+
+.cuteFont {
+    font-family: 'Single Day';
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Practice Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #cadbee;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 36px; /* 제목의 폰트 크기를 키웁니다 */
+            color: #252525;
+        }
+        #gameArea {
+            position: relative;
+            width: 80%;
+            height: 80%;
+            border: none;
+            border-radius: 20px;
+            background-color: #fff;
+            overflow: hidden;
+        }
+        .word {
+            position: absolute;
+            font-size: 24px;
+            color: #000;
+        }
+        .fallenWord {
+            position: absolute;
+            font-size: 24px;
+            color: red;
+        }
+        #userInput {
+            font-size: 24px;
+            padding: 10px 20px;
+            width: 75%;
+            margin-top: 20px;
+            border: none;  /* 테두리 색상 변경 */
+            border-radius: 20px;  /* 둥근 모서리 추가 */
+            background-color: #252525;  /* 배경색 변경 */
+            color: #ffffff;  /* 글자 색상 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* 그림자 추가 */
+            outline: none;  /* 포커스 시 외곽선 제거 */
+            transition: all 0.3s ease;  /* 부드러운 전환 효과 */
+
+        
+        }
+        #userInput:focus {
+            border-color: #0077ff;  /* 포커스 시 테두리 색상 변경 */
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);  /* 포커스 시 그림자 변경 */
+        }
+        #controls {
+            margin-top: 20px;
+        }
+        #startButton, #stopButton {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 50px;
+            background-color: #007BFF;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #startButton:hover, #stopButton:hover {
+            background-color: #ff3434;
+            border-color: #ff3434;
+        }
+        #startButton:active, #stopButton:active {
+            background-color: #007BFF;
+            border-color: #007BFF;
+        }
+        #startButton:focus, #stopButton:focus {
+            background-color: #ff3434;
+            border-color: #ff3434;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Typing Practice Game</h1>
+    <div id="gameArea"></div>
+    <input type="text" id="userInput" placeholder="Type here" disabled>
+    <div id="controls">
+        <button id="startButton">Start</button>
+        <button id="stopButton">Stop</button>
+        <br><br>
+    </div>
+    <script>
+        const words = ["hello", "world", "javascript", "coding", "game", "fun", "challenge", "practice", "learn", "improve"];
+        const gameArea = document.getElementById('gameArea');
+        const userInput = document.getElementById('userInput');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        let activeWords = [];
+        let fallenWords = [];
+        let score = 0;
+        let gameInterval;
+        let moveInterval;
+
+        function createWord() {
+            const word = words[Math.floor(Math.random() * words.length)];
+            const wordElement = document.createElement('div');
+            wordElement.textContent = word;
+            wordElement.classList.add('word');
+            wordElement.style.top = '0px';
+            wordElement.style.left = Math.random() * (gameArea.clientWidth - 50) + 'px';
+            gameArea.appendChild(wordElement);
+            activeWords.push(wordElement);
+            moveWord(wordElement);
+        }
+
+        function moveWord(wordElement) {
+            let top = 0;
+            const interval = setInterval(() => {
+                if (top < gameArea.clientHeight - 30) {
+                    top += 2;
+                    wordElement.style.top = top + 'px';
+                } else {
+                    clearInterval(interval);
+                    wordElement.classList.remove('word');
+                    wordElement.classList.add('fallenWord');
+                    wordElement.style.top = gameArea.clientHeight - 30 + 'px';
+                    fallenWords.push(wordElement);
+                    activeWords = activeWords.filter(word => word !== wordElement);
+                    if (!activeWords.length && gameInterval) {
+                        alert('Game Over! Your score is: ' + score);
+                        stopGame();
+                    }
+                }
+            }, 50);
+        }
+
+        function checkInput() {
+            const input = userInput.value.trim();
+            for (let i = 0; i < activeWords.length; i++) {
+                if (activeWords[i].textContent === input) {
+                    gameArea.removeChild(activeWords[i]);
+                    activeWords.splice(i, 1);
+                    userInput.value = '';
+                    score++;
+                    break;
+                }
+            }
+        }
+
+        function startGame() {
+            score = 0;
+            activeWords.forEach(word => gameArea.removeChild(word));
+            fallenWords.forEach(word => gameArea.removeChild(word));
+            activeWords = [];
+            fallenWords = [];
+            userInput.value = '';
+            userInput.disabled = false;
+            userInput.focus();
+            gameInterval = setInterval(createWord, 2000);
+            userInput.addEventListener('input', checkInput);
+        }
+
+        function stopGame() {
+            clearInterval(gameInterval);
+            userInput.removeEventListener('input', checkInput);
+            userInput.disabled = true;
+        }
+
+        startButton.addEventListener('click', startGame);
+        stopButton.addEventListener('click', stopGame);
+    </script>
+</body>
+</html>

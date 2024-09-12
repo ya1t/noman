@@ -1,0 +1,7 @@
+* {
+    cursor: url('../../images/curser/curserBall.svg'), auto;
+}
+
+*:active {
+    cursor: url('../../images/curser/curserGlass.svg'), auto;
+}

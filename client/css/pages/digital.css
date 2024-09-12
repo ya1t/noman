@@ -1,7 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbit&display=swap');
+
+* {
+    cursor: url('../../images/curser/curserAlien.svg'), auto;
+}
+
+*:active {
+    cursor: url('../../images/curser/curserTir.svg'), auto;
+}
 
 body {
     background-color: rgb(0, 0, 211);
     color: white;
-    font-family: 'Handjet';
+    font-family: 'Handjet', 'Orbit';
 }

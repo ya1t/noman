@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Diphylleia&family=Playwrite+CU:wght@100..400&family=Single+Day&display=swap');
 
+* {
+    cursor: url('../../images/curser/curserJuwel.svg'), auto;
+
+}
+
+*:active {
+    cursor: url('../../images/curser/curserJewel2.svg'), auto;
+}
+
 body {
     background-color: rgb(255, 126, 147);
     color: white;

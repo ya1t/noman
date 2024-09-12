@@ -94,6 +94,7 @@ button:hover, button:focus {
 
 .slashBtn:hover {
     background-position: 0;
+    color: white;
 }
 
 .openBtn {

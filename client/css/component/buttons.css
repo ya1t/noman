@@ -41,25 +41,25 @@ button:hover, button:focus {
     color: #fff;
     background: linear-gradient(
         to right,
-        rgba(26, 188, 156, 0.4), rgba(26, 188, 156, 0.4) 5%, 
+        blue, blue 5%, 
         black 5%, black 10%, 
-        rgba(26, 188, 156, 0.4) 10%, rgba(26, 188, 156, 0.4) 15%, 
+        blue 10%, blue 15%, 
         black 15%, black 20%, 
-        rgba(26, 188, 156, 0.4) 20%, rgba(26, 188, 156, 0.4) 25%, 
+        blue 20%, blue 25%, 
         black 25%, black 30%, 
-        rgba(26, 188, 156, 0.4) 30%, rgba(26, 188, 156, 0.4) 35%, 
+        blue 30%, blue 35%, 
         black 35%, black 40%, 
-        rgba(26, 188, 156, 0.4) 40%, rgba(26, 188, 156, 0.4) 45%, 
+        blue 40%, blue 45%, 
         black 45%, black 50%, 
-        rgba(26, 188, 156, 0.4) 50%, rgba(26, 188, 156, 0.4) 55%, 
+        blue 50%, blue 55%, 
         black 55%, black 60%, 
-        rgba(26, 188, 156, 0.4) 60%, rgba(26, 188, 156, 0.4) 65%, 
+        blue 60%, blue 65%, 
         black 65%, black 70%, 
-        rgba(26, 188, 156, 0.4) 70%, rgba(26, 188, 156, 0.4) 75%, 
+        blue 70%, blue 75%, 
         black 75%, black 80%, 
-        rgba(26, 188, 156, 0.4) 80%, rgba(26, 188, 156, 0.4) 85%, 
+        blue 80%, blue 85%, 
         black 85%, black 90%, 
-        rgba(26, 188, 156, 0.4) 90%, rgba(26, 188, 156, 0.4) 95%, 
+        blue 90%, blue 95%, 
         black 95%, black 100%
     );
     background-position: 0 0;
@@ -69,6 +69,7 @@ button:hover, button:focus {
 
 .noiseBtn:hover {
     background-position: 100px;
+    color: #fff;
 }
 
 .lightBtn {

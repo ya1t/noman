@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>테트리스</title>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <h1>테트리스</h1>
+        <div class="tetris-container">
+            <div class="tetris-area">
+                <canvas id="tetris" width="240" height="400"></canvas>
+            </div>
+            <div class="next-blocks">
+                <h2>다음 블록</h2>
+                <canvas id="next" width="80" height="240"></canvas>
+            </div>
+        </div>
+        <div>
+            <h2>점수: <span id="score">0</span></h2>
+        </div>
+        <div class="controls">
+            <button id="start-button">시작</button>
+            <button id="pause-button">일시정지</button>
+        </div>
+        <div class="high-scores">
+            <h2>최고 기록</h2>
+            <ol id="high-scores-list"></ol>
+        </div>
+
+        <script>
+            const canvas = document.getElementById('tetris');
+            const context = canvas.getContext('2d');
+            const nextCanvas = document.getElementById('next');
+            const nextContext = nextCanvas.getContext('2d');
+
+            context.scale(20, 20);
+            nextContext.scale(10, 10);
+
+            const arena = createMetrix(12, 20);
+            const nextArea = createMetrix(4, 12);
+
+            const colors = [
+                null,
+                '#CF1E10',
+                '#742A1B',
+                '#EBC5B8',
+                '#1C1837',
+                '#E58935',
+                '#135198',
+                '#16A194'
+            ]
+
+            const player = {
+                pos: {x:0, y:0},
+                matrix: null,
+                next: [],
+                score: 0,
+            }
+
+            //let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+            //데이터베이스 연결 코드로 변경하기
+
+            function createMetrix(w, h) {
+                const metrix = [];
+                while(h--) {
+                    matrix.push(new Array(w).fill(0));
+                }
+                return matrix;
+            }
+
+            function createPiece(type) {
+                if (type === 'T') {
+                    return [
+                        [0, 0, 0],
+                        [1, 1, 1],
+                        [0, 1, 0],
+                    ];
+                } else if (type === 'O') {
+                    return [
+                        [2, 2],
+                        [2, 2],
+                    ];
+                } else if (type === 'L') {
+                    return [
+                        [0, 3, 0],
+                        [0, 3, 0],
+                        [0, 3, 3],
+                    ];
+                } else if (type === 'J') {
+                    return [
+                        [0, 4, 0],
+                        [0, 4, 0],
+                        [4, 4, 0],
+                    ];
+                } else if (type === 'I') {
+                    return [
+                        [0, 5, 0, 0],
+                        [0, 5, 0, 0],
+                        [0, 5, 0, 0],
+                        [0, 5, 0, 0],
+                    ];
+                } else if (type === 'S') {
+                    return [
+                        [0, 6, 6],
+                        [6, 6, 0],
+                        [0, 0, 0],
+                    ];
+                } else if (type === 'Z') {
+                    return [
+                        [7, 7, 0],
+                        [0, 7, 7],
+                        [0, 0, 0],
+                    ];
+                };
+            }
+
+            function drawMatrix(matrix, offset, context) {
+                matrix.forEach((row, y) => {
+                    row.forEach((value, x) => {
+                        if (value !== 0) {
+                            context.fillStyle = colors[value];
+                            context.fillRect(x + offset.x,y + offset.y,1,1);
+                        }
+                    });
+                });
+            }
+
+            function draw() {
+                context.fillStyle = '#000';
+                context.fillRect(0, 0, canvas.width, canvas.height);
+
+                drawMatrix(arena, {x:0, y:0})
+            }
+        </script>
+    </body>
+</html>

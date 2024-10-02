@@ -133,7 +133,52 @@
                 context.fillStyle = '#000';
                 context.fillRect(0, 0, canvas.width, canvas.height);
 
-                drawMatrix(arena, {x:0, y:0})
+                drawMatrix(arena, {x:0, y:0}, context);
+                drawMatrix(player.matrix, player.pos, context);
+            }
+
+            function drawNext() {
+                nextContext.fillStyle = '#000';
+                nextContext.fillRect(0, 0, nextCanvas.width, nextCanvas.height);
+
+                player.next.forEach((matrix, index) => {
+                    drawMatrix(matrix, { x: 0, y: index * 4 }, nextContext);
+                });
+            }
+
+            function merge(arena, player) {
+                player.matrix.forEach((row, y) => {
+                    row.forEach((value, x) => {
+                        if (value !== 0) {
+                            arena[y + player.pos.y][x + player.pos.x] = value;
+                        }
+                    });
+                });
+            }
+
+            function collide(arena, player) {
+                const [m, o] = [player.matrix, player.pos];
+                for (let y =0; y < m.length; ++y) {
+                    for (let x = 0; x < m[y].length; ++x) {
+                        if (m[y][x] !== 0 && (arena[y + o.y]) !== 0) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
+            function rotate(matrix, dir) {
+                for (let y = 0; y < matrix.length; ++y) {
+                    for (let x = 0; x < y; ++x) {
+                        [matrix[x][y], matrix[y][x]] = [ matrix[y][x], matrix[x][y]];
+                    }
+                }
+                if (dir > 0) {
+                    matrix.forEach(row => row.reverse());
+                } else {
+                    matrix.reverse();
+                }
             }
         </script>
     </body>

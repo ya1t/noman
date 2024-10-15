@@ -169,32 +169,31 @@ document.getElementById('create-final-pattern').addEventListener('click', functi
 
 // PDF 다운로드 기능 추가
 document.getElementById('download-pdf').addEventListener('click', function () {
-    const pageContent = document.body; // 페이지 전체를 캡처
-  
-    const options = {
-      margin: 0.5,
-      filename: 'pattern.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-    };
-  
-    // 페이지 전체를 PDF로 변환
-    html2pdf().from(pageContent).set(options).save();
+  const pageContent = document.body; // 페이지 전체를 캡처
+
+  const options = {
+    margin: 0.5,
+    filename: 'pattern.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+  };
+
+  // 페이지 전체를 PDF로 변환
+  html2pdf().from(pageContent).set(options).save();
+});
+
+// JPG 다운로드 기능 추가
+document.getElementById('download-jpg').addEventListener('click', function () {
+  const pageContent = document.body; // 페이지 전체를 캡처
+
+  // html2canvas를 사용하여 페이지를 캡처
+  html2canvas(pageContent, { scale: 2 }).then(function (canvas) {
+    canvas.toBlob(function (blob) {
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'pattern.jpg'; // 파일명 설정
+      link.click(); // 다운로드 실행
+    }, 'image/jpeg', 1.0); // 이미지 형식과 품질 설정
   });
-  
-  // JPG 다운로드 기능 추가
-  document.getElementById('download-jpg').addEventListener('click', function () {
-    const pageContent = document.body; // 페이지 전체를 캡처
-  
-    // html2canvas를 사용하여 페이지를 캡처
-    html2canvas(pageContent, { scale: 2 }).then(function (canvas) {
-      canvas.toBlob(function (blob) {
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'pattern.jpg'; // 파일명 설정
-        link.click(); // 다운로드 실행
-      }, 'image/jpeg', 1.0); // 이미지 형식과 품질 설정
-    });
-  });
-    
+});
